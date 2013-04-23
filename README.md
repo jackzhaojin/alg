@@ -1,0 +1,4 @@
+alg
+===
+
+Fun with algorithms
