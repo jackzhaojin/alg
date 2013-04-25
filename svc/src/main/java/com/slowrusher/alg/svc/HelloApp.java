@@ -1,5 +1,6 @@
 package com.slowrusher.alg.svc;
 
+import com.slowrusher.alg.svc.services.HelloService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

@@ -1,4 +1,4 @@
-package com.slowrusher.alg.svc;
+package com.slowrusher.alg.svc.services;
 
 import junit.framework.Assert;
 import org.junit.Test;
