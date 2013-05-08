@@ -1,6 +1,7 @@
 package com.slowrusher.alg.svc.services;
 
 import junit.framework.Assert;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import java.util.List;
 @ContextConfiguration("classpath:spring-config.xml")
 public class SortTests {
 
+	private static final Logger LOGGER = Logger.getLogger(SortTests.class);
+
     @Autowired
     private UnknownSortServiceImpl unknownSortService;
 	@Autowired
@@ -24,19 +27,25 @@ public class SortTests {
 
 	private List<Integer> shortIntegerList = Arrays.asList(34, 13, 2, -34, -11, 1, 23, 3);
 
+	private List<Integer> bubbleShortIntegerList = Arrays.asList(1, 0, 3, 2, 5, 4, 7, 6);
+
     @Test
     public void testUnknownSort() {
-        List<Integer> sortedList = new ArrayList<Integer>();
-        sortedList.addAll(shortIntegerList);
-        Collections.sort(sortedList);
-        Assert.assertEquals(sortedList, unknownSortService.sort(shortIntegerList));
+		testSort(unknownSortService, shortIntegerList);
+		testSort(unknownSortService, bubbleShortIntegerList);
     }
 
 	@Test
 	public void testBubbleSort() {
-		List<Integer> sortedList = new ArrayList<Integer>();
-		sortedList.addAll(shortIntegerList);
+		testSort(bubbleSortService, shortIntegerList);
+		testSort(bubbleSortService, bubbleShortIntegerList);
+	}
+
+	private <T extends Comparable<T>> void testSort(SortService sortService, List<T> unsortedList) {
+		LOGGER.info("Testing sort service: " + sortService.getClass().toString());
+
+		List<T> sortedList = new ArrayList<T>(unsortedList);
 		Collections.sort(sortedList);
-		Assert.assertEquals(sortedList, bubbleSortService.sort(shortIntegerList));
+		Assert.assertEquals(sortedList, sortService.sort(unsortedList));
 	}
 }

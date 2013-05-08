@@ -1,5 +1,6 @@
 package com.slowrusher.alg.svc.services;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -14,6 +15,8 @@ import java.util.List;
  */
 @Service
 public class BubbleSortServiceImpl implements SortService{
+
+	private static final Logger LOGGER = Logger.getLogger(BubbleSortServiceImpl.class);
 	/**
 	 * From wikipedia
 	 * https://en.wikipedia.org/wiki/Sorting_algorithm#Bubble_sort
@@ -41,6 +44,7 @@ public class BubbleSortServiceImpl implements SortService{
 		}
 
 		T[] inputArray = (T[]) inputList.toArray();
+		long n = 0;
 
 		boolean sortedInLoop = true;
 
@@ -54,9 +58,11 @@ public class BubbleSortServiceImpl implements SortService{
 					inputArray[i + 1] = temp;
 					sortedInLoop = true;
 				}
+				n++;
 			}
 		}
 
+		LOGGER.info("N: " + n);
 		return Arrays.asList(inputArray);
 	}
 }
