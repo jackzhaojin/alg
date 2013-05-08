@@ -15,16 +15,28 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring-config.xml")
-public class BubbleSortTests {
+public class SortTests {
+
     @Autowired
-    private BubbleSortServiceImpl bubbleSortService;
+    private UnknownSortServiceImpl unknownSortService;
+	@Autowired
+	private BubbleSortServiceImpl bubbleSortService;
+
+	private List<Integer> shortIntegerList = Arrays.asList(34, 13, 2, -34, -11, 1, 23, 3);
 
     @Test
-    public void testBubbleSort() {
-        List<Integer> originalList = Arrays.asList(34, 13, 2, -34, -11, 1, 23, 3);
+    public void testUnknownSort() {
         List<Integer> sortedList = new ArrayList<Integer>();
-        sortedList.addAll(originalList);
+        sortedList.addAll(shortIntegerList);
         Collections.sort(sortedList);
-        Assert.assertEquals(sortedList, bubbleSortService.sort(originalList));
+        Assert.assertEquals(sortedList, unknownSortService.sort(shortIntegerList));
     }
+
+	@Test
+	public void testBubbleSort() {
+		List<Integer> sortedList = new ArrayList<Integer>();
+		sortedList.addAll(shortIntegerList);
+		Collections.sort(sortedList);
+		Assert.assertEquals(sortedList, bubbleSortService.sort(shortIntegerList));
+	}
 }
