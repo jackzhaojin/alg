@@ -32,18 +32,21 @@ public class FindLargestSubTreeTests {
 
     private SubtreeValueNode getTestData1() {
         SubtreeValueNode root = new SubtreeValueNode();
-        SubtreeValueNode c = root;
-        c.setLeft(new SubtreeValueNode());
-        c.setRight(new SubtreeValueNode());
-        c.setValue(3);
-        c.getRight().setValue(-4);
+        root.setLeft(new SubtreeValueNode());
+        root.setRight(new SubtreeValueNode());
+        root.setValue(3);
 
-        c = c.getLeft();
-        c.setLeft(new SubtreeValueNode());
-        c.setRight(new SubtreeValueNode());
-        c.setValue(-1);
-        c.getLeft().setValue(4);
-        c.getRight().setValue(2);
+        SubtreeValueNode l = root.getLeft();
+        l.setLeft(new SubtreeValueNode());
+        l.setRight(new SubtreeValueNode());
+        l.setValue(-1);
+        l.getLeft().setValue(4);
+        l.getRight().setValue(2);
+
+        SubtreeValueNode r = root.getRight();
+        r.setValue(-6);
+        r.setLeft(new SubtreeValueNode());
+        r.getLeft().setValue(2);
 
         return root;
     }

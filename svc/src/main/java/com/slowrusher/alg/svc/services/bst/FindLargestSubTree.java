@@ -31,11 +31,11 @@ public class FindLargestSubTree {
         SubtreeValueNode maxRightNode = null;
         if(node.getLeft() != null) {
             maxLeftNode = calculateSubTree(node.getLeft());
-            leftSum = maxLeftNode.getSubTreeValue();
+            leftSum = node.getLeft().getSubTreeValue();
         }
         if(node.getRight() != null) {
             maxRightNode = calculateSubTree(node.getRight());
-            rightSum = maxRightNode.getSubTreeValue();
+            rightSum = node.getRight().getSubTreeValue();
         }
         int subTreeValue = node.getValue() + leftSum + rightSum;
         node.setSubTreeValue(subTreeValue);
